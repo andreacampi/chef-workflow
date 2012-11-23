@@ -201,6 +201,8 @@ class VM::KnifeProvisioner
   #
   def client_delete(node_name)
     init_knife_plugin(Chef::Knife::ClientDelete, [node_name, '-y']).run
+  rescue => e
+    puts "WARNING: client_delete failed: #{e}, continue anyway..."
   end
 
   #
@@ -208,5 +210,7 @@ class VM::KnifeProvisioner
   #
   def node_delete(node_name)
     init_knife_plugin(Chef::Knife::NodeDelete, [node_name, '-y']).run
+  rescue => e
+    puts "WARNING: node_delete failed: #{e}, continue anyway..."
   end
 end
